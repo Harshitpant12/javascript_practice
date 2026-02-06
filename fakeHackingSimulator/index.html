@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hacking...</title>
+    <style>
+      * {
+        margin: 25px;
+        background-color: black;
+        font-family: monospace;
+        color: rgb(0, 255, 0);
+      }
+      p {
+        margin: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <script>
+      let cont = document.querySelector(".container");
+      const myfun = async () => {
+        let random = Math.ceil(Math.random() * 7) * 1000;
+        console.log(random);
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve();
+          }, random);
+        });
+      };
+      // ...
+      function startDots(para, text) {
+        let dots = ["", ".", "..", "..."];
+        let i = 0;
+        return setInterval(() => {
+          para.textContent = text + dots[i];
+          i = (i + 1) % dots.length;
+        }, 500);
+      }
+      async function text() {
+        let arr = [
+          "Initializing Hacking",
+          "Reading your files",
+          "Password files detected",
+          "Sending all passwords and personal file to server",
+          "Cleaning up",
+        ];
+        for (const val of arr) {
+          let para = document.createElement("p");
+          cont.append(para);
+
+          let interval = startDots(para, val);
+          await myfun();
+          clearInterval(interval);
+          para.textContent = val + "...";
+        }
+      }
+      text();
+    </script>
+  </body>
+</html>
